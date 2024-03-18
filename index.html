@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="header_logo.png" alt="Company Logo" class="company-logo" />
+    </nav>
+
+    <div class="heading-section">
+      <h1>Holi 2024 Food Order</h1>
+    </div>
+
+    <div class="food-instructions">
+      <p>
+        <strong>Pav Bhaji:</strong> Vegetable curry (bhaji) cooked in tomato
+        gravy and served with a soft bread roll (Pav)
+      </p>
+      <p>
+        <strong>Samosa Chaat:</strong> (samosa- deep fried pastry with a spiced
+        filling usually made with potatoes, spices, and herbs) (samosa chaat-
+        smashed samosas loaded with chickpeas, yogurt, chutneys, and onions)
+      </p>
+      <p>
+        <strong>Vegetable Masala Rice:</strong> Rice cooked with mixed
+        vegetables and spices
+      </p>
+      <p><strong>Vada Pav:</strong> Potato fritter sandwich</p>
+      <p>
+        <strong>Chole Bhature:</strong> Chickpea Curry with Fried Flatbreads
+      </p>
+      <p>*All food orders come with 1 Ladoo (Dessert)*</p>
+      <p>*All foods contain Ginger, Garlic, and Onions*</p>
+    </div>
+
+    <form name="submit-to-google-sheet">
+      <input name="email" type="email" placeholder="Email" required />
+      <input name="Name" type="text" placeholder="Name" required />
+
+      <h3>Solid Food - 2 Ticket Each</h3>
+      <label for="Samosa-Chaat">Samosa Chaat:</label>
+      <select name="Samosa Chaat" id="Samosa-Chaat">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <label for="Pav-Bhaji">Pav Bhaji:</label>
+      <select name="Pav Bhaji" id="Pav-Bhaji">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <label for="Chole-Bhature">Chole Bhature:</label>
+      <select name="Chole Bhature" id="Chole-Bhature">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <label for="Vada-Pav">Vada Pav:</label>
+      <select name="Vada Pav" id="Vada-Pav">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <h3>Any 2 Drinks for 1 Ticket</h3>
+      <div class="drinks-section">
+        <!-- Repeat for each drink, making sure to give unique names and IDs -->
+        <div class="drink-item">
+          <label for="Coke">Coke - 1/2 Ticket</label>
+          <select name="Coke" id="Coke">
+            <option value="">Select</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="drink-item">
+          <label for="Sunkist">Sunkist - 1/2 Ticket</label>
+          <select name="Sunkist" id="Sunkist">
+            <option value="">Select</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+
+
+        <div class="drink-item">
+            <label for="Sprite">Sprite - 1/2 Ticket</label>
+            <select name="Sprite" id="Sprite">
+                <option value="">Select</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+          </div>
+        <!-- More drink items here -->
+
+        <div class="drink-item">
+            <label for="Water">Water - 1/2 Ticket</label>
+            <select name="Water" id="Water">
+                <option value="">Select</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+          </div>
+    
+          <div class="drink-item">
+            <label for="Mango Lassi">Mango Lassi - 1/2 Ticket</label>
+            <select name="Mango Lassi" id="Mango Lassi">
+                <option value="">Select</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+          </div>
+    
+          <div class="drink-item">
+            <label for="Frooti">Frooti - 1/2 Ticket</label>
+            <select name="Frooti" id="Frooti">
+                <option value="">Select</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+          </div>
+          
+          <div class="drink-item">
+            <label for="Masala Chai">Masala Chai - 1/2 Ticket</label>
+            <select name="Masala Chai" id="Masala Chai">
+                <option value="">Select</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+      
+
+      <button type="submit">Send</button>
+    </form>
+
+
+    <div id="confirmation-card" class="confirmation-card" style="display:none;">
+        <h2>Order Confirmation</h2>
+        <div id="order-details"></div>
+        <button onclick="document.getElementById('confirmation-card').style.display='none'">Close</button>
+      </div>
+
+
+
+
+      <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzxYDRn52IKha2tI03ZK22dYUKy0H4k4dlKPyn4Ea-1FBsr0D8e4cOEV7GTQESVnyBXFg/exec';
+        const form = document.forms['submit-to-google-sheet'];
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          const formData = new FormData(form);
+          const orderDetails = document.getElementById('order-details');
+          orderDetails.innerHTML = ''; // Clear previous order details
+      
+          let orderSummary = '';
+          for (const pair of formData.entries()) {
+            if (pair[1] !== '' && pair[0] !== 'email' && pair[0] !== 'Name') { // Skip empty values and the email and name fields
+              orderSummary += `<p><strong>${pair[0]}:</strong> ${pair[1]}</p>`;
+            }
+          }
+      
+          // Append orderSummary to the confirmation card
+          orderDetails.innerHTML = orderSummary;
+      
+          fetch(scriptURL, { method: 'POST', body: formData })
+            .then(response => {
+              console.log('Success!', response);
+              document.getElementById('confirmation-card').style.display = 'block'; // Show the confirmation card
+            })
+            .catch(error => console.error('Error!', error.message));
+        });
+      </script>
+      
+
+  </body>
+</html>
