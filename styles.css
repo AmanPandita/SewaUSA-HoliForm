@@ -115,6 +115,10 @@ label {
 }
 
 .confirmation-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;
@@ -126,7 +130,6 @@ label {
     z-index: 100;
     width: 80%;
     max-width: 500px;
-    text-align: center;
 }
 
 .confirmation-card h2 {
@@ -135,14 +138,11 @@ label {
     margin-bottom: 1rem;
 }
 
-.confirmation-card #order-details {
-    margin: 20px 0;
-    padding: 15px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-sizing: border-box;
-    text-align: left;
+.confirmation-card #order-details p {
+    text-align: center; /* Ensure all <p> elements inside order-details are centered */
+    margin: 10px 0; /* Add some spacing */
 }
+
 
 .confirmation-card p {
     font-size: 1rem;
@@ -151,16 +151,7 @@ label {
 }
 
 .confirmation-card button {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
+    margin-top: 20px;
 }
 
 .confirmation-card button:hover {

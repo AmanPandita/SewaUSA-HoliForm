@@ -167,7 +167,9 @@
 
 
     <div id="confirmation-card" class="confirmation-card" style="display:none;">
+        <h2>Screenshot this and show at the counter</h2>
         <h2>Order Confirmation</h2>
+        <p>Thank you for your order! Here are the details:</p>
         <div id="order-details"></div>
         <button onclick="document.getElementById('confirmation-card').style.display='none'">Close</button>
       </div>
@@ -182,20 +184,41 @@
         form.addEventListener('submit', e => {
           e.preventDefault();
           const formData = new FormData(form);
+          const correctedFormData = new FormData(); // Create a new FormData object to hold corrected values
+      
+          // Iterate over original form data and correct empty values
+          for (const [key, value] of formData) {
+            if (value === '') {
+              correctedFormData.append(key, '0'); // Replace empty values with '0'
+            } else {
+              correctedFormData.append(key, value); // Keep non-empty values as they are
+            }
+          }
+      
           const orderDetails = document.getElementById('order-details');
           orderDetails.innerHTML = ''; // Clear previous order details
       
           let orderSummary = '';
-          for (const pair of formData.entries()) {
-            if (pair[1] !== '' && pair[0] !== 'email' && pair[0] !== 'Name') { // Skip empty values and the email and name fields
-              orderSummary += `<p><strong>${pair[0]}:</strong> ${pair[1]}</p>`;
+          let totalTickets = 0;
+      
+          // Use correctedFormData for order summary and ticket calculation
+          for (const [key, value] of correctedFormData) {
+            if (key !== 'email' && key !== 'Name') {
+              orderSummary += `<p><strong>${key}:</strong> ${value}</p>`;
+              
+              if (key === 'Samosa Chaat' || key === 'Pav Bhaji' || key === 'Chole Bhature' || key === 'Vada Pav') {
+                totalTickets += parseInt(value) * 2;
+              } else {
+                totalTickets += parseInt(value) * 0.5;
+              }
             }
           }
       
-          // Append orderSummary to the confirmation card
-          orderDetails.innerHTML = orderSummary;
+          // Append total tickets to the order summary
+          orderDetails.innerHTML = orderSummary + `<p><strong>Total Tickets:</strong> ${totalTickets}</p>`;
       
-          fetch(scriptURL, { method: 'POST', body: formData })
+          // Use correctedFormData for the fetch call
+          fetch(scriptURL, { method: 'POST', body: correctedFormData })
             .then(response => {
               console.log('Success!', response);
               document.getElementById('confirmation-card').style.display = 'block'; // Show the confirmation card
@@ -203,6 +226,8 @@
             .catch(error => console.error('Error!', error.message));
         });
       </script>
+      
+      
       
 
   </body>
