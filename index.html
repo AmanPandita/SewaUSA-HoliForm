@@ -16,25 +16,32 @@
     </div>
 
     <div class="food-instructions">
-      <p>
-        <strong>Pav Bhaji:</strong> Vegetable curry (bhaji) cooked in tomato
-        gravy and served with a soft bread roll (Pav)
-      </p>
+
       <p>
         <strong>Samosa Chaat:</strong> (samosa- deep fried pastry with a spiced
         filling usually made with potatoes, spices, and herbs) (samosa chaat-
         smashed samosas loaded with chickpeas, yogurt, chutneys, and onions)
       </p>
+      
+      <p>
+        <strong>Pav Bhaji:</strong> Vegetable curry (bhaji) cooked in tomato
+        gravy and served with a soft bread roll (Pav)
+      </p>
+      
       <p>
         <strong>Vegetable Masala Rice:</strong> Rice cooked with mixed
         vegetables and spices
       </p>
-      <p><strong>Vada Pav:</strong> Potato fritter sandwich</p>
+      
       <p>
         <strong>Chole Bhature:</strong> Chickpea Curry with Fried Flatbreads
       </p>
+
+      <p>
+        <strong>Vada Pav:</strong> Spicy Potato Fritter in a Bun
+      </p>
       <p>*All food orders come with 1 Ladoo (Dessert)*</p>
-      <p>*All foods contain Ginger, Garlic, and Onions*</p>
+      <p>*All food contain Ginger, Garlic, and Onions*</p>
     </div>
 
     <form name="submit-to-google-sheet">
@@ -52,6 +59,14 @@
 
       <label for="Pav-Bhaji">Pav Bhaji:</label>
       <select name="Pav Bhaji" id="Pav-Bhaji">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+
+      <label for="Vegetable Masala Rice">Vegetable Masala Rice:</label>
+      <select name="Vegetable Masala Rice" id="Vegetable Masala Rice">
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -167,7 +182,7 @@
 
 
     <div id="confirmation-card" class="confirmation-card" style="display:none;">
-        <h2>Screenshot this and show at the counter</h2>
+        <h2>Screenshot & show at the counter</h2>
         <h2>Order Confirmation</h2>
         <p>Thank you for your order! Here are the details:</p>
         <div id="order-details"></div>
@@ -184,48 +199,39 @@
         form.addEventListener('submit', e => {
           e.preventDefault();
           const formData = new FormData(form);
-          const correctedFormData = new FormData(); // Create a new FormData object to hold corrected values
-      
-          // Iterate over original form data and correct empty values
-          for (const [key, value] of formData) {
-            if (value === '') {
-              correctedFormData.append(key, '0'); // Replace empty values with '0'
-            } else {
-              correctedFormData.append(key, value); // Keep non-empty values as they are
-            }
-          }
-      
-          const orderDetails = document.getElementById('order-details');
-          orderDetails.innerHTML = ''; // Clear previous order details
-      
           let orderSummary = '';
           let totalTickets = 0;
       
-          // Use correctedFormData for order summary and ticket calculation
-          for (const [key, value] of correctedFormData) {
-            if (key !== 'email' && key !== 'Name') {
-              orderSummary += `<p><strong>${key}:</strong> ${value}</p>`;
-              
+          // Iterate over the form data to build the order summary and calculate tickets
+          for (const [key, value] of formData) {
+            // Check for non-empty values and exclude non-order fields
+            if (value !== '0' && value !== '' && key !== 'email' && key !== 'Name') {
+              const itemName = key.replace(/-/g, ' '); // Replace dashes with spaces for display
+              orderSummary += `<p>${itemName}: ${value}</p>`;
+      
+              // Calculate total tickets
               if (key === 'Samosa Chaat' || key === 'Pav Bhaji' || key === 'Chole Bhature' || key === 'Vada Pav') {
                 totalTickets += parseInt(value) * 2;
-              } else {
+              } else { // Assuming all other fields are drinks
                 totalTickets += parseInt(value) * 0.5;
               }
             }
           }
       
-          // Append total tickets to the order summary
-          orderDetails.innerHTML = orderSummary + `<p><strong>Total Tickets:</strong> ${totalTickets}</p>`;
+          // Display the total tickets at the top of the summary
+          const totalTicketsDisplay = `<p><strong>Total Tickets Needed:</strong> ${totalTickets}</p>`;
+          const orderDetails = document.getElementById('order-details');
+          orderDetails.innerHTML = totalTicketsDisplay + orderSummary; // Combine total tickets with the order summary
       
-          // Use correctedFormData for the fetch call
-          fetch(scriptURL, { method: 'POST', body: correctedFormData })
+          fetch(scriptURL, { method: 'POST', body: formData })
             .then(response => {
               console.log('Success!', response);
-              document.getElementById('confirmation-card').style.display = 'block'; // Show the confirmation card
+              document.getElementById('confirmation-card').style.display = 'flex'; // Show the confirmation card
             })
             .catch(error => console.error('Error!', error.message));
         });
       </script>
+      
       
       
       
